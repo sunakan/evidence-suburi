@@ -8,3 +8,11 @@ static/data
 .vscode/settings.json
 .env
 .evidence/meta
+# 自動生成される
+# プロジェクトに関連する個人的な設定や環境設定を保存
+# 用途
+# - データソース接続情報やプロジェクトの基本設定
+# - テーマ設定や表示言語などの個人的な設定
+# - ローカル開発時に使用する設定情報
+# なので、git管理下に置かない
+.evidence/customization/.profile.json
