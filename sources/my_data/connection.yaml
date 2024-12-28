@@ -1,0 +1,4 @@
+name: my_data
+type: duckdb
+options:
+  filename: db.duckdb
