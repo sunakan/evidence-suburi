@@ -1,11 +1,29 @@
 ---
-title: Welcome to Evidence
+title: Evidenceの素振り
 ---
 
-<Details title='How to edit this page'>
+<Details title='ページの更新方法'>
 
-  This page can be found in your project at `/pages/index.md`. Make a change to the markdown file and save it to see the change take effect in your browser.
+- このページはプロジェクト内の `/pages/index.md` にある。
+- マークダウンファイルに変更を加えて保存すると、ブラウザ上で変更が反映される。
+
 </Details>
+
+ソースとして `sources/needful_things/` を読み込んでいる
+
+<Details title="tree sources/needful_things の結果">
+
+```markdown
+sources/needful_things
+├── connection.yaml
+├── needful_things.duckdb
+└── orders.sql
+```
+
+</Details>
+
+
+↓はneedful_things.ordersのカテゴリをgroup byしたSQL(SQLを記載すると、結果まで載せてくれる👍)
 
 ```sql categories
   select
@@ -15,15 +33,17 @@ title: Welcome to Evidence
 ```
 
 <Dropdown data={categories} name=category value=category>
-    <DropdownOption value="%" valueLabel="All Categories"/>
+    <DropdownOption value="%" valueLabel="全てのcategory"/>
 </Dropdown>
 
 <Dropdown name=year>
-    <DropdownOption value=% valueLabel="All Years"/>
+    <DropdownOption value=% valueLabel="全ての年"/>
     <DropdownOption value=2019/>
     <DropdownOption value=2020/>
     <DropdownOption value=2021/>
 </Dropdown>
+
+sqlで `${inputs.〇〇.value}` を利用すると、↓のSQLの内容を動的にできる(結果も即時反映されるし超便利👍)
 
 ```sql orders_by_category
   select 
@@ -37,20 +57,12 @@ title: Welcome to Evidence
   order by sales_usd desc
 ```
 
+`BarChartタグ` で、棒グラフも表示可能(data=〇〇で、ソースを指定する(この例ではorders_by_categoryを指定してる))
+
 <BarChart
     data={orders_by_category}
-    title="Sales by Month, {inputs.category.label}"
+    title="月毎のセールス, {inputs.category.label}"
     x=month
     y=sales_usd
     series=category
 />
-
-## What's Next?
-- [Connect your data sources](settings)
-- Edit/add markdown files in the `pages` folder
-- Deploy your project with [Evidence Cloud](https://evidence.dev/cloud)
-
-## Get Support
-- Message us on [Slack](https://slack.evidence.dev/)
-- Read the [Docs](https://docs.evidence.dev/)
-- Open an issue on [Github](https://github.com/evidence-dev/evidence)
